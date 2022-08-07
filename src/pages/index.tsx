@@ -40,7 +40,7 @@ const IndexPage = (data: PageProps<data, result>) => {
           </div>
           <div className="col">
             <div className="card bg-dark mb-3">
-            <a href="/monaliesarees" style={{display:"inherit"}}><img
+            <a href="/monalie-sarees" style={{display:"inherit"}}><img
                 style={{ maxHeight: "200px" }}
                 src={MonaLisa}
                 className="rounded mx-auto d-block-fluid"
