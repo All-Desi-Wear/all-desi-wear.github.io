@@ -5,6 +5,7 @@ import ProductLinkGenerator from "./src/helpers/ProductLinkGenerator"
 import ImageHelper from "./src/helpers/ImageHelper"
 import { SideshowData } from "./src/models/Types"
 import config from "./gatsby-config"
+import { createRemoteFileNode } from "gatsby-source-filesystem"
 
 const urlCleaner = new UrlCleaner();
 const productLinkGenerator = new ProductLinkGenerator();

@@ -1,5 +1,4 @@
 import * as React from "react";
-import { StaticImage } from "gatsby-plugin-image"
 
 type CardProps = {
   name: string;
@@ -9,9 +8,10 @@ type CardProps = {
 };
 
 const Card = (props: CardProps) => {
+  const image = props.thumbnailImageUrl;
   return (
     <div className="card">
-      <StaticImage src={props.thumbnailImageUrl} alt={props.name} style={{ maxHeight: "200px" }}  className="rounded mx-auto d-block-fluid"/>
+      <img src={image} alt={props.name} style={{ maxHeight: "200px" }}  className="rounded mx-auto d-block-fluid"/>
       <div className="card-body">
         <h5 className="card-title">{props.name}</h5>
       </div>

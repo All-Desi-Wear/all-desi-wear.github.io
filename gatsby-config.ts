@@ -10,7 +10,7 @@ const config: GatsbyConfig = {
     siteUrl: `https://www.yourdomain.tld`,
     productsPerPage: Number(process.env.PRODUCTS_PER_PAGE)
   },
-  plugins: ["gatsby-plugin-image", "gatsby-transformer-sharp", "gatsby-plugin-react-helmet", "gatsby-plugin-sitemap", {
+  plugins: ["gatsby-plugin-image","gatsby-plugin-sharp",  "gatsby-transformer-sharp", "gatsby-plugin-react-helmet", "gatsby-plugin-sitemap", {
     resolve: 'gatsby-plugin-manifest',
     options: {
       "icon": "src/images/icon.png"
