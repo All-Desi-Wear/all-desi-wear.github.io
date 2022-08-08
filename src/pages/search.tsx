@@ -31,7 +31,7 @@ const SearchPage = (data: PageProps<data, result>) => {
         <div className="row">
           <div className="col">
             <Formik
-              initialValues={{ query: window.location.search }}
+              initialValues={{ query: "" }}
               onSubmit={(values, { setSubmitting }) => {
                 setQuery(values.query);
                 setSubmitting(false);
