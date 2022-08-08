@@ -3,7 +3,6 @@ import { PageProps, graphql } from "gatsby";
 import NavBar from "../components/NavBar";
 import Head from "../components/Head";
 import { result, allCustomApi, allDataJson } from "../models/Types";
-import SideshowAffiliateLinkFinder from "../helpers/SideshowAffiliateLinkFinder";
 import ProductLinkGenerator from "../helpers/ProductLinkGenerator";
 import Card from "../components/Card";
 import SideshowImageHelper from "../helpers/ImageHelper";
@@ -12,7 +11,6 @@ import SideshowImageHelper from "../helpers/ImageHelper";
 type data = {
   allDataJson: allDataJson;
 };
-const affiliateLinkFinder = new SideshowAffiliateLinkFinder();
 const productLinkGenerator = new ProductLinkGenerator();
 const imageHelper = new SideshowImageHelper();
 const BrandPage = (data: PageProps<data, result>) => {

@@ -1,9 +1,11 @@
 import type { GatsbyConfig } from "gatsby";
+import ProductLinkGenerator from "./src/helpers/ProductLinkGenerator"
 
 require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
 })
 
+const productLinkGenerator = new ProductLinkGenerator();
 const config: GatsbyConfig = {
   siteMetadata: {
     title: ``,
@@ -46,6 +48,7 @@ const config: GatsbyConfig = {
         {
           allDataJson {
             nodes {
+              Id
               Brand
               Description
               Images
@@ -59,17 +62,17 @@ const config: GatsbyConfig = {
 
       // Field used as the reference value for each document.
       // Default: 'id'.
-      ref: 'Name',
+      ref: 'Id',
 
       // List of keys to index. The values of the keys are taken from the
       // normalizer function below.
       // Default: all fields
-      index: ['Brand', 'Description'],
+      index: ['Brand','Name', 'Description'],
 
       // List of keys to store and make available in your UI. The values of
       // the keys are taken from the normalizer function below.
       // Default: all fields
-      store: ['Brand', 'Name'],
+      store: ['Id','Brand', 'Name', 'Description', 'Url'],
 
       // Function used to map the result from the GraphQL query. This should
       // return an array of items to index in the form of flat objects
@@ -77,9 +80,11 @@ const config: GatsbyConfig = {
       // field above (default: 'id'). This is required.
       normalizer: ({ data }) =>
         data.allDataJson.nodes.map((node) => ({
+          Id: node.Id,
           Brand: node.Brand,
           Name: node.Name,
           Description: node.Description,
+          Url: productLinkGenerator.CreateProductLink(node.Brand, node.Name)
         })),
     },
   },
