@@ -28,7 +28,7 @@ const IndexPage = (data: PageProps<data, result>) => {
           <div className="col">
             <div className="card">
             <a href="/mirraw" style={{display:"inherit"}}> <img
-                style={{ maxHeight: "200px" }}
+                style={{ maxHeight: "200px", width: "100%" }}
                 src={Mirraw}
                 className="rounded mx-auto d-block-fluid"
                 alt="Mirraw logo"
@@ -41,7 +41,7 @@ const IndexPage = (data: PageProps<data, result>) => {
           <div className="col">
             <div className="card bg-dark mb-3">
             <a href="/monalie-sarees" style={{display:"inherit"}}><img
-                style={{ maxHeight: "200px" }}
+                style={{ maxHeight: "200px", width: "100%" }}
                 src={MonaLisa}
                 className="rounded mx-auto d-block-fluid"
                 alt="Mona Lisa logo"
@@ -54,7 +54,7 @@ const IndexPage = (data: PageProps<data, result>) => {
           <div className="col">
             <div className="card" style={{minHeight:"200px"}}>
             <a href="/sherni-london" style={{display:"inherit"}}><img
-                style={{ maxHeight: "183px" }}
+                style={{ maxHeight: "183px", width: "100%" }}
                 src={SherniLondon}
                 className="rounded mx-auto d-block-fluid"
                 alt="Sherni London logo"
