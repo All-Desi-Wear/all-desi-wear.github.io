@@ -45,6 +45,26 @@ const NavBar = () => {
                 All Products
               </a>
             </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/search">
+                Search &nbsp;
+
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 490 490"
+                  width="15.3125"
+                  height="15.3125"
+                >
+                  <path
+                    fill="none"
+                    stroke="#000"
+                    stroke-width="36"
+                    stroke-linecap="round"
+                    d="m280,278a153,153 0 1,0-2,2l170,170m-91-117 110,110-26,26-110-110"
+                  />
+                </svg>
+              </a>
+            </li>
             {/* <li className="nav-item dropdown">
               <a
                 className="nav-link dropdown-toggle"
@@ -56,7 +76,7 @@ const NavBar = () => {
               >
                 Dropdown
               </a> */}
-              {/* <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+            {/* <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li>
                   <a className="dropdown-item" href="#">
                     Action
@@ -81,7 +101,7 @@ const NavBar = () => {
               <a className="nav-link disabled">Disabled</a>
             </li>*/}
           </ul>
-          <form className="d-flex">
+          {/* <form className="d-flex">
             <input
               className="form-control me-2"
               type="search"
@@ -91,11 +111,11 @@ const NavBar = () => {
             <button className="btn btn-outline-success" type="submit">
               Search
             </button>
-          </form>
+          </form> */}
         </div>
       </div>
     </nav>
   );
 };
 
-export default NavBar
+export default NavBar;

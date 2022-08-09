@@ -43,10 +43,6 @@ const SearchPage = (data: PageProps<data, result>) => {
         >
           <Form className="row">
             <div className="col-auto">
-              <label for="search" className="visually-hidden">Search</label>
-              <input type="text" readonly class="form-control-plaintext" id="search" value="Enter Search Terms" />
-            </div>
-            <div className="col-auto">
               <Field
                 name="query"
                 placeholder="Enter your search"
