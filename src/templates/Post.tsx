@@ -3,6 +3,7 @@ import { PageProps } from "gatsby";
 import NavBar from "../components/NavBar";
 import { result } from "../models/Types";
 import Head from "../components/Head";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const IndexRoute = (data: PageProps<result, result>) => {
   return (
@@ -18,9 +19,10 @@ const IndexRoute = (data: PageProps<result, result>) => {
                 <span className="badge bg-secondary float-end">
                   {data.pageContext.status}
                 </span>
-                <img
-                  className="rounded mx-auto d-block"
+                <LazyLoadImage
                   src={data.pageContext.imageUrl}
+                  style={{ maxHeight: "200px" }}
+                  className="rounded mx-auto d-block-fluid"
                 />
               </div>
             </div>
