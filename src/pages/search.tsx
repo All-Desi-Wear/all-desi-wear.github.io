@@ -30,21 +30,41 @@ const SearchPage = (data: PageProps<data, result>) => {
       <div className="container my-4">
         <div className="row">
           <div className="col">
-            <Formik
-              initialValues={{ query: "" }}
-              onSubmit={(values, { setSubmitting }) => {
-                setQuery(values.query);
-                setSubmitting(false);
-              }}
-            >
-              <Form>
-                <Field name="query" />
-              </Form>
-            </Formik>
             <h1>Results</h1>
-            <ul>
+          </div>
+        </div>
+
+        <Formik
+          initialValues={{ query: "" }}
+          onSubmit={(values, { setSubmitting }) => {
+            setQuery(values.query);
+            setSubmitting(false);
+          }}
+        >
+          <Form className="row">
+            <div className="col-auto">
+              <label for="search" className="visually-hidden">Search</label>
+              <input type="text" readonly class="form-control-plaintext" id="search" value="Enter Search Terms" />
+            </div>
+            <div className="col-auto">
+              <Field
+                name="query"
+                placeholder="Enter your search"
+                className="form-control"
+              />
+            </div>
+            <div className="col-auto">
+              <button type="submit" className="btn btn-primary mb-3">
+                Submit
+              </button>
+            </div>
+          </Form>
+        </Formik>
+        <div className="row">
+          <div className="col">
+            <ul className="list-group">
               {results.map((result) => (
-                <li key={result.Id}>
+                <li className="list-group-item" key={result.Id}>
                   <a href={result.Url}>{result.Name}</a>
                 </li>
               ))}
