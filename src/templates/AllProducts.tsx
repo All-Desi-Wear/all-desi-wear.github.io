@@ -45,7 +45,7 @@ const AllProducts = (data: PageProps<data, productContext>) => {
             <div className="col">
               <Card
                 name={item.Name}
-                thumbnailImageUrl={item.Images !== null ? item.Images[0] : ""}
+                thumbnailImageUrl={imageHelper.GetImageLink(item.Image)}
                 url={item.Link}
                 productUrl={productLinkGenerator.CreateProductLink(
                   item.Brand,
@@ -71,7 +71,7 @@ export const query = graphql`
           nodes {
             Brand
             Description
-            Images
+            Image
             Link
             Name
             Price

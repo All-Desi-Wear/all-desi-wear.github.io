@@ -12,7 +12,7 @@ export type DataNode = {
     Id : string
     BrandProductId : string
     Description : string
-    Images : string[]
+    Image : string
     Link : string
     Name : string
     Price : string

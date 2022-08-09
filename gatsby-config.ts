@@ -51,7 +51,7 @@ const config: GatsbyConfig = {
               Id
               Brand
               Description
-              Images
+              Image
               Link
               Name
               Price
@@ -72,11 +72,11 @@ const config: GatsbyConfig = {
       // List of keys to store and make available in your UI. The values of
       // the keys are taken from the normalizer function below.
       // Default: all fields
-      store: ['Id','Brand', 'Name', 'Description', 'Url'],
+      store: ['Id','Brand', 'Name', 'Description', 'Url', 'Image'],
 
       // Function used to map the result from the GraphQL query. This should
       // return an array of items to index in the form of flat objects
-      // containing properties to index. The objects must contain the `ref`
+      // containing properties Imagesto index. The objects must contain the `ref`
       // field above (default: 'id'). This is required.
       normalizer: ({ data }) =>
         data.allDataJson.nodes.map((node) => ({
@@ -84,7 +84,8 @@ const config: GatsbyConfig = {
           Brand: node.Brand,
           Name: node.Name,
           Description: node.Description,
-          Url: productLinkGenerator.CreateProductLink(node.Brand, node.Name)
+          Url: productLinkGenerator.CreateProductLink(node.Brand, node.Name),
+          Image: node.Image
         })),
     },
   },

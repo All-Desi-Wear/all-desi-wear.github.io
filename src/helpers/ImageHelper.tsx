@@ -2,7 +2,7 @@ import { IImagehelper } from "./IImagehelper";
 
 export default class SideshowImageHelper implements IImagehelper {
 
-    GetImageLink(thumbnail: string[]) {
-        return thumbnail!== null ? thumbnail[0] :""
+    GetImageLink(thumbnail: string) {
+        return thumbnail?? ""
     }
 }

@@ -5,7 +5,6 @@ import ProductLinkGenerator from "./src/helpers/ProductLinkGenerator"
 import ImageHelper from "./src/helpers/ImageHelper"
 import { SideshowData } from "./src/models/Types"
 import config from "./gatsby-config"
-import { createRemoteFileNode } from "gatsby-source-filesystem"
 
 const urlCleaner = new UrlCleaner();
 const productLinkGenerator = new ProductLinkGenerator();
@@ -17,7 +16,7 @@ export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] 
     type allDataJson implements Node {
             Brand : String
             Description : String
-            Images : String
+            Image : String
             Link : String
             Name : String
             Price : String
@@ -36,7 +35,7 @@ export const createPages: GatsbyNode["createPages"] = async ({ graphql, actions 
           nodes {
             Brand
             Description
-            Images
+            Image
             Link
             Name
             Price
@@ -81,7 +80,7 @@ export const createPages: GatsbyNode["createPages"] = async ({ graphql, actions 
           name: post.Name,
           price: post.Price,
           url: post.Link,
-          imageUrl: post.Images !== null ? post.Images[0] : "",
+          imageUrl: imageHelper.GetImageLink(post.Image),
           description: post.Description,
           brand: post.Brand,
           brandUrl: `/${brandUrl}/`,
