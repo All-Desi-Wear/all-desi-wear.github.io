@@ -20,7 +20,7 @@ const IndexPage = (data: PageProps<data, result>) => {
   return (
     <main>
       <NavBar></NavBar>
-      <Head title="Your favourite collectibles all available here"></Head>
+      <Head title="All Desi Wear - All your desi wear needs are available here"></Head>
       <div className="container my-4">
         <div className="row row-cols-1 row-cols-md-3 g-4">
           <div className="col">
