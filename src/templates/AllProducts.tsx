@@ -2,15 +2,10 @@ import * as React from "react";
 import { PageProps, graphql } from "gatsby";
 import NavBar from "../components/NavBar";
 import Head from "../components/Head";
-import { DataNode, allDataJson } from "../models/Types";
-import ProductLinkGenerator from "../helpers/ProductLinkGenerator";
+import { data,DataNode } from "../models/Types";
 import Card from "../components/Card";
 import Pagination from "../components/Pagnation";
-import SideshowImageHelper from "../helpers/ImageHelper";
 
-type data = {
-  allDataJson: allDataJson;
-};
 
 type productContext = {
   affiliates: DataNode[]
@@ -19,8 +14,6 @@ type productContext = {
   url: string
 };
 
-const productLinkGenerator = new ProductLinkGenerator();
-const imageHelper = new SideshowImageHelper();
 const AllProducts = (data: PageProps<data, productContext>) => {
   return (
     <main>
@@ -42,13 +35,10 @@ const AllProducts = (data: PageProps<data, productContext>) => {
           {data.data.allDataJson.nodes.map((item) => (
             <div className="col">
               <Card
-                name={item.Name}
-                thumbnailImageUrl={imageHelper.GetImageLink(item.Image)}
-                url={item.Link}
-                productUrl={productLinkGenerator.CreateProductLink(
-                  item.Brand,
-                  item.Name
-                )}
+                Name={item.Name}
+                Image={item.Image}
+                AffiliateLink={item.AffiliateLink}
+                Url={item.Url}
               ></Card>
             </div>
           ))}
@@ -70,7 +60,7 @@ export const query = graphql`
             Brand
             Description
             Image
-            Link
+            AffiliateLink
             Name
             Price
           }

@@ -1,26 +1,23 @@
 import * as React from "react";
 import { PageProps } from "gatsby";
 import NavBar from "../components/NavBar";
-import { result } from "../models/Types";
+import { DataNode } from "../models/Types";
 import Head from "../components/Head";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
-const IndexRoute = (data: PageProps<result, result>) => {
+const IndexRoute = (data: PageProps<DataNode, DataNode>) => {
   return (
     <main>
       <NavBar></NavBar>
-      <Head title={data.pageContext.name}></Head>
+      <Head title={data.pageContext.Name}></Head>
 
       <div className="container my-4">
         <div className="row">
           <div className="col">
             <div className="card">
               <div className="card-body">
-                <span className="badge bg-secondary float-end">
-                  {data.pageContext.status}
-                </span>
                 <LazyLoadImage
-                  src={data.pageContext.imageUrl}
+                  src={data.pageContext.Image}
                   style={{ maxHeight: "200px" }}
                   className="rounded mx-auto d-block-fluid"
                 />
@@ -28,15 +25,15 @@ const IndexRoute = (data: PageProps<result, result>) => {
             </div>
           </div>
           <div className="col">
-            <h1>{data.pageContext.name}</h1>
-            <a href={data.pageContext.brandUrl}>{data.pageContext.brand}</a>
+            <h1>{data.pageContext.Name}</h1>
+            <a href={data.pageContext.BrandUrl}>{data.pageContext.Brand}</a>
             <p
-              dangerouslySetInnerHTML={{ __html: data.pageContext.description }}
+              dangerouslySetInnerHTML={{ __html: data.pageContext.Description }}
             />
-            <p className="fs-2 text">${data.pageContext.price}</p>
+            <p className="fs-2 text">${data.pageContext.Price}</p>
             <a
               className="btn btn-primary"
-              href={data.pageContext.url}
+              href={data.pageContext.AffiliateLink}
               target="_blank"
             >
               Buy Product

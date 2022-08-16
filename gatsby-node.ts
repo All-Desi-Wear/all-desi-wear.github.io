@@ -1,26 +1,22 @@
 import type { GatsbyNode } from "gatsby"
 import * as path from "path"
-import UrlCleaner from "./src/helpers/SideshowUrlCleaner"
-import ProductLinkGenerator from "./src/helpers/ProductLinkGenerator"
-import ImageHelper from "./src/helpers/ImageHelper"
-import { SideshowData } from "./src/models/Types"
+import { data } from "./src/models/Types"
 import config from "./gatsby-config"
-
-const urlCleaner = new UrlCleaner();
-const productLinkGenerator = new ProductLinkGenerator();
-const imageHelper = new ImageHelper();
 
 export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] = async ({ actions }) => {
   const { createTypes } = actions
   const typeDefs = `
     type allDataJson implements Node {
             Brand : String
+            BrandUrl : String
             Description : String
             Image : String
-            Link : String
+            AffiliateLink : String
             Name : String
             Price : String
             Category : String
+            CategoryUrl : String
+            Url : String
     }
   `
   createTypes(typeDefs)
@@ -30,17 +26,20 @@ export const createPages: GatsbyNode["createPages"] = async ({ graphql, actions 
 
   const { createPage } = actions
 
-  const data = await graphql<SideshowData>(`
+  const data = await graphql<data>(`
     {
         allDataJson {
           nodes {
             Brand
+            BrandUrl
             Description
             Image
-            Link
+            AffiliateLink
             Name
             Price
             Category
+            CategoryUrl
+            Url
           }
         }
       }      
@@ -57,13 +56,11 @@ export const createPages: GatsbyNode["createPages"] = async ({ graphql, actions 
   const createBrandsPromise = brands.map((post) => {
 
     if (post !== undefined) {
-      var url = `/${urlCleaner.Clean(post.Brand ?? "default")}`;
-
       createPage({
-        path: url,
+        path: post.BrandUrl,
         component: brandTemplate,
         context: {
-          brand: post.Brand,
+          Brand: post.Brand,
         }
       })
     }
@@ -74,13 +71,11 @@ export const createPages: GatsbyNode["createPages"] = async ({ graphql, actions 
   const createCategoriesPromise = categories.map((post) => {
 
     if (post !== undefined) {
-      var url = `/${urlCleaner.Clean(post.Category ?? "default")}`;
-
       createPage({
-        path: url,
+        path: post.CategoryUrl,
         component: categoryTemplate,
         context: {
-          category: post.Category,
+          Category: post.Category,
         }
       })
     }
@@ -89,20 +84,20 @@ export const createPages: GatsbyNode["createPages"] = async ({ graphql, actions 
 
   const createPostPromise = sideShowData.map((post) => {
     if (post !== undefined) {
-      var brandUrl = `${urlCleaner.Clean(post.Brand ?? "default")}`;
-      var url = productLinkGenerator.CreateProductLink(post.Brand, post.Name);
 
       createPage({
-        path: url,
+        path: post.Url,
         component: postTemplate,
         context: {
-          name: post.Name,
-          price: post.Price,
-          url: post.Link,
-          imageUrl: imageHelper.GetImageLink(post.Image),
-          description: post.Description,
-          brand: post.Brand,
-          brandUrl: `/${brandUrl}/`,
+          Name: post.Name,
+          Price: post.Price,
+          AffiliateLink: post.AffiliateLink,
+          Image: post.Image,
+          Description: post.Description,
+          Brand: post.Brand,
+          BrandUrl: post.BrandUrl,
+          Category: post.Category,
+          CategoryUrl: post.CategoryUrl,
           // anything else you want to pass to your context
         }
       })
@@ -126,5 +121,5 @@ export const createPages: GatsbyNode["createPages"] = async ({ graphql, actions 
     })
   })
 
-  await Promise.all([createPostPromise, createBrandsPromise, allPagesPromise])
+  await Promise.all([createCategoriesPromise,createPostPromise, createBrandsPromise, allPagesPromise])
 }

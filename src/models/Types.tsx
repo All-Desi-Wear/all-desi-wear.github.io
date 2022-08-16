@@ -1,6 +1,5 @@
-export type SideshowData = {
-    allDataJson : allDataJson,
-    allCustomApi: allCustomApi
+export type data = {
+    allDataJson : allDataJson
 }
 
 export type allDataJson = {
@@ -9,34 +8,15 @@ export type allDataJson = {
 
 export type DataNode = {
     Brand : string
+    BrandUrl : string
     Id : string
     BrandProductId : string
     Description : string
     Image : string
-    Link : string
+    AffiliateLink : string
     Name : string
     Price : string
     Category : string
-}
-
-export type allCustomApi = {
-    nodes: result[]
-}
-
-
-export type result = {
-    brand : string
-    brandUrl : string
-    sku : string
-    description : string
-    imageUrl : string
-    stockMessage : string
-    uid : string
-    url : string
-    thumbnailImageUrl : string
-    price : string
-    name : string
-    affiliates : DataNode[]
-    status: string
-    category: string
+    CategoryUrl : string
+    Url : string
 }

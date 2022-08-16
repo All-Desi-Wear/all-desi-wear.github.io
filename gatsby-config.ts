@@ -1,11 +1,9 @@
 import type { GatsbyConfig } from "gatsby";
-import ProductLinkGenerator from "./src/helpers/ProductLinkGenerator"
 
 require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
 })
 
-const productLinkGenerator = new ProductLinkGenerator();
 const config: GatsbyConfig = {
   siteMetadata: {
     title: ``,
@@ -52,10 +50,11 @@ const config: GatsbyConfig = {
               Brand
               Description
               Image
-              Link
+              AffiliateLink
               Name
               Price
               Category
+              Url
             }
           }      
         }
@@ -85,7 +84,7 @@ const config: GatsbyConfig = {
           Brand: node.Brand,
           Name: node.Name,
           Description: node.Description,
-          Url: productLinkGenerator.CreateProductLink(node.Brand, node.Name),
+          Url: node.Url,
           Image: node.Image,
           Category: node.Category
         })),

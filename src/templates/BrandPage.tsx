@@ -2,40 +2,30 @@ import * as React from "react";
 import { PageProps, graphql } from "gatsby";
 import NavBar from "../components/NavBar";
 import Head from "../components/Head";
-import { result, allCustomApi, allDataJson } from "../models/Types";
-import ProductLinkGenerator from "../helpers/ProductLinkGenerator";
+import { data, DataNode } from "../models/Types";
 import Card from "../components/Card";
-import SideshowImageHelper from "../helpers/ImageHelper";
 
 
-type data = {
-  allDataJson: allDataJson;
-};
-const productLinkGenerator = new ProductLinkGenerator();
-const imageHelper = new SideshowImageHelper();
-const BrandPage = (data: PageProps<data, result>) => {
+const BrandPage = (data: PageProps<data, DataNode>) => {
   return (
     <main>
       <NavBar></NavBar>
-      <Head title={data.pageContext.brand}></Head>
+      <Head title={data.pageContext.Brand}></Head>
 
       <div className="container my-4">
         <div className="row">
           <div className="col">
-            <h1>{data.pageContext.brand}</h1>
+            <h1>{data.pageContext.Brand}</h1>
           </div>
         </div>
         <div className="row row-cols-1 row-cols-md-3 g-4">
           {data.data.allDataJson.nodes.map((item) => (
             <div className="col">
               <Card
-                name={item.Name}
-                thumbnailImageUrl={imageHelper.GetImageLink(item.Image)}
-                url={item.Link}
-                productUrl={productLinkGenerator.CreateProductLink(
-                  item.Brand,
-                  item.Name
-                )}
+                Name={item.Name}
+                Image={item.Image}
+                AffiliateLink={item.AffiliateLink}
+                Url={item.Url}
               ></Card>
             </div>
           ))}
@@ -50,11 +40,15 @@ export const query = graphql`
     allDataJson(filter: { Brand: { eq: $brand } }) {
       nodes {
         Brand
+        BrandUrl
         Description
         Image
-        Link
+        AffiliateLink
         Name
         Price
+        Category
+        CategoryUrl
+        Url
       }
     }
   }

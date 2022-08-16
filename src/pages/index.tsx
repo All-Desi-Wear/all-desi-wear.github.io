@@ -2,21 +2,14 @@ import * as React from "react";
 import NavBar from "../components/NavBar";
 import Head from "../components/Head";
 import Card from "../components/Card";
-import { result, allDataJson } from "../models/Types";
-import ProductLinkGenerator from "../helpers/ProductLinkGenerator";
+import { DataNode, data } from "../models/Types";
 import { graphql, PageProps } from "gatsby";
 import Mirraw from "../images/mirraw.png";
 import MonaLisa from "../images/monalisa-logo1.png";
 import SherniLondon from "../images/shernilondon.webp";
-import SideshowImageHelper from "../helpers/ImageHelper"
 
 
-type data = {
-  allDataJson: allDataJson;
-};
-const productLinkGenerator = new ProductLinkGenerator();
-const imageHelper = new SideshowImageHelper();
-const IndexPage = (data: PageProps<data, result>) => {
+const IndexPage = (data: PageProps<data, DataNode>) => {
   return (
     <main>
       <NavBar></NavBar>
@@ -72,8 +65,12 @@ const IndexPage = (data: PageProps<data, result>) => {
         <div className="row row-cols-1 row-cols-md-3 g-4">
           {data.data.allDataJson.nodes.map((item) => (
             <div className="col">
-              <Card name={item.Name} thumbnailImageUrl={imageHelper.GetImageLink(item.Image)} url={item.Link} productUrl={productLinkGenerator.CreateProductLink(item.Brand,item.Name)}></Card>
-            </div>
+             <Card
+                Name={item.Name}
+                Image={item.Image}
+                AffiliateLink={item.AffiliateLink}
+                Url={item.Url}
+              ></Card>            </div>
           ))}
         </div>
       </div>
@@ -86,11 +83,15 @@ export const query = graphql`
     allDataJson(limit: 6) {
       nodes {
         Brand
+        BrandUrl
         Description
         Image
-        Link
+        AffiliateLink
         Name
         Price
+        Category
+        CategoryUrl
+        Url
       }
     }
   }

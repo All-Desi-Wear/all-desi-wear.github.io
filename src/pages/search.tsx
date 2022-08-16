@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { useFlexSearch } from "react-use-flexsearch";
 import { Formik, Form, Field } from "formik";
 import { graphql, PageProps } from "gatsby";
-import { result } from "../models/Types";
 import NavBar from "../components/NavBar";
 import Head from "../components/Head";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import { DataNode } from "../models/Types";
 
 type data = {
   localSearchPages: localSearchPages;
@@ -16,7 +16,7 @@ type localSearchPages = {
   index: [];
 };
 
-const SearchPage = (data: PageProps<data, result>) => {
+const SearchPage = (data: PageProps<data, DataNode>) => {
 
   const index = data.data.localSearchPages.index;
   const store = data.data.localSearchPages.store;
@@ -69,7 +69,7 @@ if(typeof window !== "undefined") {
         <div className="row">
           <div className="col">
             <ul className="list-group">
-              {results.map((result) => (
+              {results.map((result : DataNode) => (
                 <li className="list-group-item" key={result.Id}>
                   <LazyLoadImage
                     src={result.Image}
