@@ -45,7 +45,7 @@ if(typeof window !== "undefined") {
         </div>
 
         <Formik
-          initialValues={{ query: "" }}
+          initialValues={{ query: searchParams }}
           onSubmit={(values, { setSubmitting }) => {
             setQuery(values.query);
             setSubmitting(false);
@@ -57,7 +57,6 @@ if(typeof window !== "undefined") {
                 name="query"
                 placeholder="Enter your search"
                 className="form-control"
-                value={searchParams}
               />
             </div>
             <div className="col-auto">
