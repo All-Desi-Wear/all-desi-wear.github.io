@@ -57,12 +57,7 @@ export const query = graphql`
   query allProductsQuery($skip: Int!, $limit: Int!) {
         allDataJson(limit: $limit, skip: $skip) {
           nodes {
-            Brand
-            Description
-            Image
-            AffiliateLink
-            Name
-            Price
+            ...Product
           }
         }      
   }

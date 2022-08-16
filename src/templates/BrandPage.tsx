@@ -39,16 +39,7 @@ export const query = graphql`
   query MyQuery($brand: String) {
     allDataJson(filter: { Brand: { eq: $brand } }) {
       nodes {
-        Brand
-        BrandUrl
-        Description
-        Image
-        AffiliateLink
-        Name
-        Price
-        Category
-        CategoryUrl
-        Url
+        ...Product
       }
     }
   }

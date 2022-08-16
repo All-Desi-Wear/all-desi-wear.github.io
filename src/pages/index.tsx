@@ -82,16 +82,7 @@ export const query = graphql`
   {
     allDataJson(limit: 6) {
       nodes {
-        Brand
-        BrandUrl
-        Description
-        Image
-        AffiliateLink
-        Name
-        Price
-        Category
-        CategoryUrl
-        Url
+        ...Product
       }
     }
   }

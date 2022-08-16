@@ -42,16 +42,7 @@ export const query = graphql`
   query Category($category: String) {
     allDataJson(filter: { Category: { eq: $category } }) {
       nodes {
-        Brand
-        BrandUrl
-        Description
-        Image
-        AffiliateLink
-        Name
-        Price
-        Category
-        CategoryUrl
-        Url
+        ...Product
       }
     }
   }
