@@ -17,10 +17,11 @@ type localSearchPages = {
 };
 
 const SearchPage = (data: PageProps<data, result>) => {
+
   const index = data.data.localSearchPages.index;
   const store = data.data.localSearchPages.store;
-
-  const [query, setQuery] = useState(null);
+  const url = new URL(window.location.href); 
+  const [query, setQuery] = useState(url.searchParams.get("search") ?? null);
   const results = useFlexSearch(query, index, store);
 
   return (
@@ -48,6 +49,7 @@ const SearchPage = (data: PageProps<data, result>) => {
                 name="query"
                 placeholder="Enter your search"
                 className="form-control"
+                value={url.searchParams.get("search") ?? ""}
               />
             </div>
             <div className="col-auto">
@@ -62,10 +64,14 @@ const SearchPage = (data: PageProps<data, result>) => {
             <ul className="list-group">
               {results.map((result) => (
                 <li className="list-group-item" key={result.Id}>
-                  <LazyLoadImage src={result.Image} height="200px" width= "200px"/>
-                  <a href={result.Url}>{result.Name}</a><br />
+                  <LazyLoadImage
+                    src={result.Image}
+                    height="200px"
+                    width="200px"
+                  />
+                  <a href={result.Url}>{result.Name}</a>
+                  <br />
                   <a href={result.Category}>{result.Category}</a>
-
                 </li>
               ))}
             </ul>
