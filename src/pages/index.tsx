@@ -52,7 +52,7 @@ const IndexPage = (data: PageProps<data, result>) => {
           <div className="col">
             <div className="card" style={{minHeight:"200px"}}>
             <a href="/sherni-london" style={{display:"inherit"}}><img
-                style={{ height: "183px", width: "100%" }}
+                style={{ height: "200px", width: "100%" }}
                 src={SherniLondon}
                 className="rounded mx-auto d-block-fluid"
                 alt="Sherni London logo"
