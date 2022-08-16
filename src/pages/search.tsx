@@ -20,8 +20,16 @@ const SearchPage = (data: PageProps<data, result>) => {
 
   const index = data.data.localSearchPages.index;
   const store = data.data.localSearchPages.store;
-  const url = new URL(window.location.href); 
-  const [query, setQuery] = useState(url.searchParams.get("search") ?? null);
+var searchParams = null;
+
+if(typeof window !== "undefined") {
+  const url = new URL(window?.location?.href); 
+  searchParams = url.searchParams.get("search") ?? "";
+}
+  
+
+  
+  const [query, setQuery] = useState(searchParams);
   const results = useFlexSearch(query, index, store);
 
   return (
