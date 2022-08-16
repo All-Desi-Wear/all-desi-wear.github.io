@@ -55,6 +55,7 @@ const config: GatsbyConfig = {
               Link
               Name
               Price
+              Category
             }
           }      
         }
@@ -67,12 +68,12 @@ const config: GatsbyConfig = {
       // List of keys to index. The values of the keys are taken from the
       // normalizer function below.
       // Default: all fields
-      index: ['Brand','Name', 'Description'],
+      index: ['Brand','Name', 'Description', 'Category'],
 
       // List of keys to store and make available in your UI. The values of
       // the keys are taken from the normalizer function below.
       // Default: all fields
-      store: ['Id','Brand', 'Name', 'Description', 'Url', 'Image'],
+      store: ['Id','Brand', 'Name', 'Description', 'Url', 'Image', 'Category'],
 
       // Function used to map the result from the GraphQL query. This should
       // return an array of items to index in the form of flat objects
@@ -85,7 +86,8 @@ const config: GatsbyConfig = {
           Name: node.Name,
           Description: node.Description,
           Url: productLinkGenerator.CreateProductLink(node.Brand, node.Name),
-          Image: node.Image
+          Image: node.Image,
+          Category: node.Category
         })),
     },
   },

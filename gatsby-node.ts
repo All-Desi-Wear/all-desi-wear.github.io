@@ -20,6 +20,7 @@ export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] 
             Link : String
             Name : String
             Price : String
+            Category : String
     }
   `
   createTypes(typeDefs)
@@ -39,6 +40,7 @@ export const createPages: GatsbyNode["createPages"] = async ({ graphql, actions 
             Link
             Name
             Price
+            Category
           }
         }
       }      
@@ -46,9 +48,9 @@ export const createPages: GatsbyNode["createPages"] = async ({ graphql, actions 
 
   const postTemplate = path.resolve("./src/templates/Post.tsx");
   const brandTemplate = path.resolve("./src/templates/BrandPage.tsx");
+  const categoryTemplate = path.resolve("./src/templates/Category.tsx");
   const allPagesTemplate = path.resolve("./src/templates/AllProducts.tsx");
   const sideShowData = data.data?.allDataJson.nodes;
-  console.log(data.data);
 
   var brands = sideShowData.filter((a, i) => sideShowData.findIndex((s) => a.Brand === s.Brand) === i);
 
@@ -62,6 +64,23 @@ export const createPages: GatsbyNode["createPages"] = async ({ graphql, actions 
         component: brandTemplate,
         context: {
           brand: post.Brand,
+        }
+      })
+    }
+
+  });
+  var categories = sideShowData.filter((a, i) => sideShowData.findIndex((s) => a.Category === s.Category) === i);
+
+  const createCategoriesPromise = categories.map((post) => {
+
+    if (post !== undefined) {
+      var url = `/${urlCleaner.Clean(post.Category ?? "default")}`;
+
+      createPage({
+        path: url,
+        component: categoryTemplate,
+        context: {
+          category: post.Category,
         }
       })
     }

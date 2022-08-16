@@ -16,6 +16,7 @@ export type DataNode = {
     Link : string
     Name : string
     Price : string
+    Category : string
 }
 
 export type allCustomApi = {
@@ -37,4 +38,5 @@ export type result = {
     name : string
     affiliates : DataNode[]
     status: string
+    category: string
 }

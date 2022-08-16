@@ -26,18 +26,13 @@ const NavBar = () => {
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/monalie-sarees">
-                Monalie Sarees
+              <a className="nav-link" href="/lehenga">
+                Lehenga
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/mirraw">
-                Mirraw
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="/sherni-london">
-                Sherni London
+              <a className="nav-link" href="/saree">
+                Saree
               </a>
             </li>
             <li className="nav-item">

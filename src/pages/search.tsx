@@ -63,7 +63,9 @@ const SearchPage = (data: PageProps<data, result>) => {
               {results.map((result) => (
                 <li className="list-group-item" key={result.Id}>
                   <LazyLoadImage src={result.Image} height="200px" width= "200px"/>
-                  <a href={result.Url}>{result.Name}</a>
+                  <a href={result.Url}>{result.Name}</a><br />
+                  <a href={result.Category}>{result.Category}</a>
+
                 </li>
               ))}
             </ul>

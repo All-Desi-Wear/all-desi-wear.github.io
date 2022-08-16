@@ -2,40 +2,27 @@ import * as React from "react";
 import { PageProps, graphql } from "gatsby";
 import NavBar from "../components/NavBar";
 import Head from "../components/Head";
-import { DataNode, allDataJson } from "../models/Types";
+import { result, allDataJson } from "../models/Types";
 import ProductLinkGenerator from "../helpers/ProductLinkGenerator";
 import Card from "../components/Card";
-import Pagination from "../components/Pagnation";
 import SideshowImageHelper from "../helpers/ImageHelper";
+
 
 type data = {
   allDataJson: allDataJson;
 };
-
-type productContext = {
-  affiliates: DataNode[]
-  currentPage: number
-  numberOfPages: number
-  url: string
-};
-
 const productLinkGenerator = new ProductLinkGenerator();
 const imageHelper = new SideshowImageHelper();
-const AllProducts = (data: PageProps<data, productContext>) => {
+const CategoryPage = (data: PageProps<data, result>) => {
   return (
     <main>
       <NavBar></NavBar>
-      <Head title="All Products"></Head>
+      <Head title={data.pageContext.category}></Head>
 
       <div className="container my-4">
         <div className="row">
           <div className="col">
-            <h1>All Products</h1>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col">
-            <Pagination currentPage={data.pageContext.currentPage} numberOfPages={data.pageContext.numberOfPages} url={data.pageContext.url}></Pagination>
+            <h1>{data.pageContext.category}</h1>
           </div>
         </div>
         <div className="row row-cols-1 row-cols-md-3 g-4">
@@ -53,29 +40,25 @@ const AllProducts = (data: PageProps<data, productContext>) => {
             </div>
           ))}
         </div>
-        <div className="row">
-          <div className="col">
-            <Pagination currentPage={data.pageContext.currentPage} numberOfPages={data.pageContext.numberOfPages} url={data.pageContext.url}></Pagination>
-          </div>
-        </div>
       </div>
     </main>
   );
 };
 
 export const query = graphql`
-  query allProductsQuery($skip: Int!, $limit: Int!) {
-        allDataJson(limit: $limit, skip: $skip) {
-          nodes {
-            Brand
-            Description
-            Image
-            Link
-            Name
-            Price
-          }
-        }      
+  query Category($category: String) {
+    allDataJson(filter: { Category: { eq: $category } }) {
+      nodes {
+        Brand
+        Description
+        Image
+        Link
+        Name
+        Price
+        Category
+      }
+    }
   }
 `;
 
-export default AllProducts;
+export default CategoryPage;
