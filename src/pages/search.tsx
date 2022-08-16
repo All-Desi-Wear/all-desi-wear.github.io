@@ -57,7 +57,7 @@ if(typeof window !== "undefined") {
                 name="query"
                 placeholder="Enter your search"
                 className="form-control"
-                value={url.searchParams.get("search") ?? ""}
+                value={searchParams}
               />
             </div>
             <div className="col-auto">
