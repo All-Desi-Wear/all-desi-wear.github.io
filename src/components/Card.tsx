@@ -15,7 +15,7 @@ const Card = (props: CardProps) => {
       <LazyLoadImage
        src={image}
        alt={props.name}
-       style={{ maxHeight: "200px" }}
+       style={{ height: "200px" }}
        className="rounded mx-auto d-block-fluid"
       />
       <div className="card-body">
