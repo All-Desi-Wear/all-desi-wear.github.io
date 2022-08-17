@@ -26,6 +26,10 @@ const CategoryPage = (data: PageProps<data, DataNode>) => {
                 Image={item.Image}
                 AffiliateLink={item.AffiliateLink}
                 Url={item.Url}
+                Category={item.Category}
+                CategoryUrl={item.CategoryUrl}
+                Brand={item.Brand}
+                BrandUrl={item.BrandUrl}
               ></Card>
             </div>
           ))}
@@ -36,8 +40,8 @@ const CategoryPage = (data: PageProps<data, DataNode>) => {
 };
 
 export const query = graphql`
-  query Category($category: String) {
-    allDataJson(filter: { Category: { eq: $category } }) {
+  query Category($Category: String) {
+    allDataJson(filter: { Category: { eq: $Category } }) {
       nodes {
         ...Product
       }

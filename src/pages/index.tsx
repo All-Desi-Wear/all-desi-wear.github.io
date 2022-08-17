@@ -70,6 +70,10 @@ const IndexPage = (data: PageProps<data, DataNode>) => {
                 Image={item.Image}
                 AffiliateLink={item.AffiliateLink}
                 Url={item.Url}
+                Category={item.Category}
+                CategoryUrl={item.CategoryUrl}
+                Brand={item.Brand}
+                BrandUrl={item.BrandUrl}
               ></Card>            </div>
           ))}
         </div>

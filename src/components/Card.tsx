@@ -12,6 +12,9 @@ const Card = (props: DataNode) => {
        className="rounded mx-auto d-block-fluid"
       />
       <div className="card-body">
+      <a href={props.CategoryUrl} className="card-link">{props.Category}</a>
+      <a href={props.BrandUrl} className="card-link">{props.Brand}</a>
+      
         <h5 className="card-title">{props.Name}</h5>
       </div>
       <div className="card-footer text-muted">
