@@ -4,7 +4,7 @@ import { Formik, Form, Field } from "formik";
 import { graphql, PageProps } from "gatsby";
 import NavBar from "../components/NavBar";
 import Head from "../components/Head";
-import { LazyLoadImage } from "react-lazy-load-image-component";
+import Card from "../components/Card";
 import { DataNode } from "../models/Types";
 
 type data = {
@@ -17,18 +17,15 @@ type localSearchPages = {
 };
 
 const SearchPage = (data: PageProps<data, DataNode>) => {
-
   const index = data.data.localSearchPages.index;
   const store = data.data.localSearchPages.store;
-var searchParams = null;
+  var searchParams = null;
 
-if(typeof window !== "undefined") {
-  const url = new URL(window?.location?.href); 
-  searchParams = url.searchParams.get("search") ?? "";
-}
-  
+  if (typeof window !== "undefined") {
+    const url = new URL(window?.location?.href);
+    searchParams = url.searchParams.get("search") ?? "";
+  }
 
-  
   const [query, setQuery] = useState(searchParams);
   const results = useFlexSearch(query, index, store);
 
@@ -66,22 +63,23 @@ if(typeof window !== "undefined") {
             </div>
           </Form>
         </Formik>
+
         <div className="row">
-          <div className="col">
-            <ul className="list-group">
-              {results.map((result : DataNode) => (
-                <li className="list-group-item" key={result.Id}>
-                  <LazyLoadImage
-                    src={result.Image}
-                    height="200px"
-                    width="200px"
-                  />
-                  <a href={result.Url}>{result.Name}</a>
-                  <br />
-                  <a href={result.Category}>{result.Category}</a>
-                </li>
-              ))}
-            </ul>
+          <div className="row row-cols-1 row-cols-md-3 g-4">
+            {results.map((item: DataNode) => (
+              <div className="col">
+                <Card
+                  Name={item.Name}
+                  Image={item.Image}
+                  AffiliateLink={item.AffiliateLink}
+                  Url={item.Url}
+                  Category={item.Category}
+                  CategoryUrl={item.CategoryUrl}
+                  Brand={item.Brand}
+                  BrandUrl={item.BrandUrl}
+                ></Card>
+              </div>
+            ))}
           </div>
         </div>
       </div>
