@@ -2,13 +2,10 @@ import * as React from "react";
 import { PageProps, graphql } from "gatsby";
 import NavBar from "../components/NavBar";
 import Head from "../components/Head";
-import { DataNode, allDataJson } from "../models/Types";
+import { data, DataNode } from "../models/Types";
 import Card from "../components/Card";
 
 
-type data = {
-  allDataJson: allDataJson;
-};
 const CategoryPage = (data: PageProps<data, DataNode>) => {
   return (
     <main>

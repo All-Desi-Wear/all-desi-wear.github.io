@@ -2,13 +2,12 @@ import * as React from "react";
 import { PageProps, graphql } from "gatsby";
 import NavBar from "../components/NavBar";
 import Head from "../components/Head";
-import { data,DataNode } from "../models/Types";
+import { data, DataNode } from "../models/Types";
 import Card from "../components/Card";
 import Pagination from "../components/Pagnation";
 
 
 type productContext = {
-  affiliates: DataNode[]
   currentPage: number
   numberOfPages: number
   url: string
