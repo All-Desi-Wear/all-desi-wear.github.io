@@ -30,7 +30,7 @@ const IndexRoute = (data: PageProps<DataNode, DataNode>) => {
             <p
               dangerouslySetInnerHTML={{ __html: data.pageContext.Description }}
             />
-            <p className="fs-2 text">${data.pageContext.Price}</p>
+            <p className="fs-2 text">{data.pageContext.Price}</p>
             <a
               className="btn btn-primary"
               href={data.pageContext.AffiliateLink}
