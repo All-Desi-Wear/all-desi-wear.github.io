@@ -27,9 +27,9 @@ const IndexRoute = (data: PageProps<DataNode, DataNode>) => {
           <div className="col">
             <h1>{data.pageContext.Name}</h1>
             <a href={data.pageContext.BrandUrl}>{data.pageContext.Brand}</a>
-            <p
+            <div
               dangerouslySetInnerHTML={{ __html: data.pageContext.Description }}
-            />
+            ></div>
             <p className="fs-2 text">{data.pageContext.Price}</p>
             <a
               className="btn btn-primary"
