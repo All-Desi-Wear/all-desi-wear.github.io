@@ -113,30 +113,46 @@ const SearchPage = (data: PageProps<data, DataNode>) => {
                         
                         <>
                           <h3>{category}</h3>
-                          <ul>
+                          
                             <>
-                              {results.map((result: DataNode, i: number) => (
-                                <li key={i}>
-                                  <h4>{result.Name}</h4>
-                                  <p>{result.Name}</p>
-                                </li>
+                              {results.map((item: DataNode, i: number) => (
+                               <div className="col">
+                               <Card
+                                 Name={item.Name}
+                                 Image={item.Image}
+                                 AffiliateLink={item.AffiliateLink}
+                                 Url={item.Url}
+                                 Category={item.Category}
+                                 CategoryUrl={item.CategoryUrl}
+                                 Brand={item.Brand}
+                                 BrandUrl={item.BrandUrl}
+                               ></Card>
+                             </div>
                               ))}
                             </>
-                          </ul>
+                          
                         </>
                       )
                     )}
                   </>
                 )}
                 {filteredResults && (
-                    <ul>
-                    {filteredResults.map((result : DataNode, i : number) => (
-                      <li key={i}>
-                        <h3>{result.Name}</h3>
-                        {result.Category && <p>Category: {result.Category}</p>}
-                      </li>
+                    <>
+                    {filteredResults.map((item : DataNode, i : number) => (
+                      <div className="col">
+                      <Card
+                        Name={item.Name}
+                        Image={item.Image}
+                        AffiliateLink={item.AffiliateLink}
+                        Url={item.Url}
+                        Category={item.Category}
+                        CategoryUrl={item.CategoryUrl}
+                        Brand={item.Brand}
+                        BrandUrl={item.BrandUrl}
+                      ></Card>
+                    </div>
                     ))}
-                  </ul>
+</>
                 )} 
                 {(!filteredResults && !groupedResults) && (
                   <>
