@@ -7,11 +7,12 @@ import { graphql, PageProps } from "gatsby";
 import Mirraw from "../images/mirraw.png";
 import MonaLisa from "../images/monalisa-logo1.png";
 import SherniLondon from "../images/shernilondon.webp";
+import ImageBackground from "../images/paisley-black-and-withe-vector-background-floral-abstract-design-pattern-indian-art-ornament-PPEFC4.jpg";
 
 
 const IndexPage = (data: PageProps<data, DataNode>) => {
   return (
-    <main>
+    <main style={{  backgroundImage: `url(${ImageBackground})`, backgroundRepeat: "no-repeat",backgroundAttachment: "fixed"}}>
       <NavBar></NavBar>
       <Head title="All Desi Wear - All your desi wear needs are available here"></Head>
       <div className="container my-4">
