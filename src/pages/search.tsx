@@ -27,20 +27,21 @@ const SearchPage = (data: PageProps<data, DataNode>) => {
     searchParams = url.searchParams.get("search") ?? "";
   }
 
-   
-
-  
   const [query, setQuery] = useState(searchParams);
   const searchResults = useFlexSearch(query, index, store);
-  const Categories = [...new Set(searchResults.map(item => item.Category))] as Array<string>;
+  const Categories = [
+    ...new Set(searchResults.map((item) => item.Category)),
+  ] as Array<string>;
   const [filteredResults, setFilteredResults] = useState(null);
-  const [groupedResults, setGroupedResults] = useState(null)
+  const [groupedResults, setGroupedResults] = useState(null);
 
   // Function to filter the results by category
   const filterByCategory = (category: string) => {
-    var subset = searchResults.filter((result: DataNode) => result.Category === category);
+    var subset = searchResults.filter(
+      (result: DataNode) => result.Category === category
+    );
     setFilteredResults(subset);
-    setGroupedResults(null)
+    setGroupedResults(null);
     console.log(subset);
   };
 
@@ -55,7 +56,7 @@ const SearchPage = (data: PageProps<data, DataNode>) => {
     }, {});
     console.log(groupedResults);
     setFilteredResults(null);
-    setGroupedResults(groupedResults)
+    setGroupedResults(groupedResults);
   };
 
   return (
@@ -92,69 +93,74 @@ const SearchPage = (data: PageProps<data, DataNode>) => {
             </div>
           </Form>
         </Formik>
-
+        <div className="row">
+          <div className="col">
+            <div className="btn-group">
+              {Categories.map((result: string, i: number) => (
+                <button
+                  className="btn btn-link"
+                  onClick={() => filterByCategory(result)}
+                >
+                  {result}
+                </button>
+              ))}
+              <button className="btn btn-link" onClick={groupByCategory}>
+                Group by category
+              </button>
+            </div>
+          </div>
+        </div>
         <div className="row">
           <div className="row row-cols-1 row-cols-md-3 g-4">
             {searchResults && (
               <>
-               {Categories.map((result: string, i: number) => (
-                <button onClick={() => filterByCategory(result)}>
-                {result}
-                </button>
-
-               
-               ))
-              }
-               
-                <button onClick={groupByCategory}>Group by category</button>
                 {groupedResults && (
                   <>
-                    {Object.entries(groupedResults).map(([category, results]) => (
-                        
+                    {Object.entries(groupedResults).map(
+                      ([category, results]) => (
                         <>
                           <h3>{category}</h3>
-                          
-                            <>
-                              {results.map((item: DataNode, i: number) => (
-                               <div className="col">
-                               <Card
-                                 Name={item.Name}
-                                 Image={item.Image}
-                                 AffiliateLink={item.AffiliateLink}
-                                 Url={item.Url}
-                                 Category={item.Category}
-                                 CategoryUrl={item.CategoryUrl}
-                                 Brand={item.Brand}
-                                 BrandUrl={item.BrandUrl}
-                               ></Card>
-                             </div>
-                              ))}
-                            </>
-                          
+
+                          <>
+                            {results.map((item: DataNode, i: number) => (
+                              <div className="col">
+                                <Card
+                                  Name={item.Name}
+                                  Image={item.Image}
+                                  AffiliateLink={item.AffiliateLink}
+                                  Url={item.Url}
+                                  Category={item.Category}
+                                  CategoryUrl={item.CategoryUrl}
+                                  Brand={item.Brand}
+                                  BrandUrl={item.BrandUrl}
+                                ></Card>
+                              </div>
+                            ))}
+                          </>
                         </>
                       )
                     )}
                   </>
                 )}
                 {filteredResults && (
-                    <>
-                    {filteredResults.map((item : DataNode, i : number) => (
+                  <>
+                    {filteredResults.map((item: DataNode, i: number) => (
                       <div className="col">
-                      <Card
-                        Name={item.Name}
-                        Image={item.Image}
-                        AffiliateLink={item.AffiliateLink}
-                        Url={item.Url}
-                        Category={item.Category}
-                        CategoryUrl={item.CategoryUrl}
-                        Brand={item.Brand}
-                        BrandUrl={item.BrandUrl}
-                      ></Card>
-                    </div>
+                        <Card
+                          Name={item.Name}
+                          Image={item.Image}
+                          AffiliateLink={item.AffiliateLink}
+                          Url={item.Url}
+                          Category={item.Category}
+                          CategoryUrl={item.CategoryUrl}
+                          Brand={item.Brand}
+                          BrandUrl={item.BrandUrl}
+                        ></Card>
+                      </div>
                     ))}
-</>
-                )} 
-                {(!filteredResults && !groupedResults) && (
+                  </>
+                )}
+                {!filteredResults && !groupedResults && (
                   <>
                     {searchResults.map((item: DataNode) => (
                       <div className="col">
